@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark-mode toggle Web Component</title>
+    <style>
+        html[data-dark-mode] {
+            color-scheme: dark;
+        }
+
+        body {
+            font-family: system-ui, sans-serif;
+        }
+
+        #with-label input {
+            height:1px;
+            left:-10000px;
+            overflow:hidden;
+            position:absolute;
+            top:auto;
+            width:1px;
+        }
+
+        #with-label span::after {
+            display: inline-block;
+            content: "🌞";
+            font-size: 2rem;
+        }
+
+        #with-label input:checked + span::after {
+            content: "🌚";
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>
+            Dark-mode toggle Web Component
+        </h1>
+        <h2>Basic</h2>
+        <dark-mode-toggle>
+            <input aria-label="dark mode toggle" type="checkbox" />
+        </dark-mode-toggle>
+        <h2>With label</h2>
+        <dark-mode-toggle id="with-label">
+            <label>
+                <input type="checkbox" />
+                <span aria-label="dark-mode-toggle"></span>
+            </label>
+        </dark-mode-toggle>
+    </main>
+    <script type="module">
+        import DarkModeToggle from "./dark-mode-toggle.js";
+
+        customElements.define(...DarkModeToggle);
+    </script>
+</body>
+</html>
